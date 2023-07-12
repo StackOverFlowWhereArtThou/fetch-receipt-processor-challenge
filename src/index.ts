@@ -1,4 +1,5 @@
 import express from "express";
+import "reflect-metadata";
 
 import receipts from "./routes/receipts.router";
 
