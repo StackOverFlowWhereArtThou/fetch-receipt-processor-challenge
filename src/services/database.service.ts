@@ -24,9 +24,8 @@ export class DataBaseService {
     return id;
   }
 
-  getRecord(id: ReceiptID): ReceiptRecord {
-    if (!this.records.has(id)) throw new Error(`No such id: ${id}`);
-    return this.records.get(id) as ReceiptRecord;
+  getRecord(id: ReceiptID): ReceiptRecord | undefined {
+    return this.records.get(id);
   }
 
   private generateID(): ReceiptID {

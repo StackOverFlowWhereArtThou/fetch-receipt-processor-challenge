@@ -1,4 +1,4 @@
-import express from "express";
+import express, { ErrorRequestHandler } from "express";
 import "reflect-metadata";
 
 import receipts from "./routes/receipts.router";
@@ -9,11 +9,15 @@ const app = express();
 
 app.use(express.json());
 
-app.get("/", function (req, res) {
-  res.send("Hello World from TS APP");
-});
-
 app.use("/receipts", receipts);
+
+// Catch-all error handler
+const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
+  res.status(500);
+  res.render("error", { error: err });
+};
+
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`);
