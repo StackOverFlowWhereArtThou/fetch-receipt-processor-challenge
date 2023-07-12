@@ -1,12 +1,11 @@
 import express from "express";
 
+import * as receiptController from "../controllers/receipt.controller";
+
 const router = express.Router();
 
-router.post("/process", (req, res) => {
-  res.send("init process");
-});
+router.post("/process", receiptController.createReceiptRecord);
 
-router.get("/:id/points", (req, res) => {
-  res.send(req.params);
-});
+router.get("/:id/points", receiptController.getReceiptRecord);
+
 export default router;
