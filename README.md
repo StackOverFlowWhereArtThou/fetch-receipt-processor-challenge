@@ -1,6 +1,8 @@
 # Overview
 
-This API was built using Node JS with express.
+This is a simple API built to satisfy the requirements stated here on the fetch [Receipt Processor Challenge](https://github.com/fetch-rewards/receipt-processor-challenge)
+
+This API was built using Node JS with express and Typescript.
 
 # Docker Image
 
@@ -19,4 +21,4 @@ docker-compose up -d
 
 ## Stopping a container
 
-You can stop the container with `docker-compose down`
+You can stop the container (either production or dev) with `docker-compose down`
