@@ -25,7 +25,7 @@ export async function createReceiptRecord(
     next();
   } else {
     const points = ReceiptPointsCalculator.calculatePoints(receiptDTO);
-    const id = dbService.createRecord(points);
+    const id = dbService.createRecord({ points });
     res.json({ id });
   }
 }

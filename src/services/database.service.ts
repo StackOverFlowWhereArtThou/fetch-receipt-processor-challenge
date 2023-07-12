@@ -18,16 +18,25 @@ export class DataBaseService {
    * @param points
    * @returns ReceiptID
    */
-  createRecord(points: number): ReceiptID {
+  createRecord(record: ReceiptRecord): ReceiptID {
     const id = this.generateID();
-    this.records.set(id, { points });
+    this.records.set(id, record);
     return id;
   }
 
+  /**
+   *
+   * @param id ID to return from the records
+   * @returns record if it exists, else undefined
+   */
   getRecord(id: ReceiptID): ReceiptRecord | undefined {
     return this.records.get(id);
   }
 
+  /**
+   * Generates a random UUID string
+   * @returns UUID string
+   */
   private generateID(): ReceiptID {
     return crypto.randomUUID();
   }
