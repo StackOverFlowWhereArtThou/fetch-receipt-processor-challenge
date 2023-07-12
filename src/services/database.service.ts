@@ -1,3 +1,5 @@
+import crypto from "crypto";
+
 type ReceiptID = string;
 
 interface ReceiptRecord {
@@ -6,11 +8,9 @@ interface ReceiptRecord {
 
 export class DataBaseService {
   records: Map<string, ReceiptRecord>;
-  nextId: number;
 
   constructor() {
     this.records = new Map();
-    this.nextId = 0;
   }
 
   /**
@@ -29,7 +29,6 @@ export class DataBaseService {
   }
 
   private generateID(): ReceiptID {
-    this.nextId += 1;
-    return this.nextId.toString();
+    return crypto.randomUUID();
   }
 }
