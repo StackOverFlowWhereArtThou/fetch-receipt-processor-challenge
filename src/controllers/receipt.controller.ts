@@ -2,11 +2,10 @@ import { Request, Response, NextFunction } from "express";
 import { validate } from "class-validator";
 import { plainToClass } from "class-transformer";
 import { ReceiptResponseDTO } from "../dtos/receipt-response.dto";
-import { ReceiptPointsCalculator } from "../services/receipt-calculation.service";
-import { DataBaseService } from "../services/database.service";
+import { ReceiptService } from "../services/receipt.service";
 
 // TODO: get this DB Service into a DI container
-const dbService = new DataBaseService();
+const receiptService = new ReceiptService();
 
 // TODO: Confirm if the DTO should actually be a parameter here
 export async function createReceiptRecord(
@@ -24,15 +23,14 @@ export async function createReceiptRecord(
     res.status(400).send("The receipt is invalid");
     next();
   } else {
-    const points = ReceiptPointsCalculator.calculatePoints(receiptDTO);
-    const id = dbService.createRecord({ points });
+    const id = receiptService.create(receiptDTO);
     res.json({ id });
   }
 }
 
 export function getReceiptRecord(req: Request, res: Response) {
   const { id } = req.params;
-  const record = dbService.getRecord(id);
+  const record = receiptService.find(id);
   if (record === undefined) {
     res.status(404).send("No receipt found for that id");
   } else {
