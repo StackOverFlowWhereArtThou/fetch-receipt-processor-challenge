@@ -1,5 +1,5 @@
-import express, { ErrorRequestHandler } from "express";
 import "reflect-metadata";
+import express, { ErrorRequestHandler } from "express";
 
 import receipts from "./routes/receipts.router";
 

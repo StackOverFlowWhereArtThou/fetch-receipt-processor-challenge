@@ -1,4 +1,6 @@
 import crypto from "crypto";
+import { Service } from "typedi";
+
 import { ReceiptResponseDTO } from "../dtos/receipt-response.dto";
 import { PointCalculation } from "./helpers/receipt-point-calculation";
 
@@ -9,6 +11,7 @@ interface ReceiptRecord {
   points: number;
 }
 
+@Service()
 export class ReceiptService {
   records: Map<string, ReceiptRecord>;
 
