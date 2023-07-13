@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { validate } from "class-validator";
 import { plainToClass } from "class-transformer";
 import { ReceiptResponseDTO } from "../dtos/receipt-response.dto";
-import { ReceiptPointsCalculator } from "../services/receiptCalculation.service";
+import { ReceiptPointsCalculator } from "../services/receipt-calculation.service";
 import { DataBaseService } from "../services/database.service";
 
 // TODO: get this DB Service into a DI container
