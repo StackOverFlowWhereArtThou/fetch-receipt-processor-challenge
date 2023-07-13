@@ -5,10 +5,8 @@ import { Container } from "typedi";
 import { ReceiptResponseDTO } from "../dtos/receipt-response.dto";
 import { ReceiptService } from "../services/receipt.service";
 
-// TODO: get this DB Service into a DI container
 const receiptService = Container.get(ReceiptService);
 
-// TODO: Confirm if the DTO should actually be a parameter here
 export async function createReceiptRecord(
   req: Request,
   res: Response,
