@@ -1,19 +1,9 @@
 FROM node:18-alpine as base
 
-
-WORKDIR /home/node/app
-
-COPY package*.json ./
-
-RUN npm i
-
+WORKDIR /app
 COPY . .
-
-FROM base as production
-
-ENV NODE_PATH=./build
-
+RUN npm install
 RUN npm run build
-
-# EXPOSE 8080
-CMD [ "node", "server.js" ]
+RUN npm run test
+EXPOSE 3000
+CMD ["npm","run", "start"]

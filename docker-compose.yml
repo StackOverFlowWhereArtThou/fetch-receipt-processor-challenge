@@ -5,13 +5,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: base
-    volumes:
-      - ./src:/home/node/app/src
-      - ./nodemon.json:/home/node/app/nodemon.json
-    container_name: recieipt-processor
+    container_name: receipt-processor
     expose:
       - "3000"
     ports:
       - "3000:3000"
-    command: npm run dev
+    command: npm run start
