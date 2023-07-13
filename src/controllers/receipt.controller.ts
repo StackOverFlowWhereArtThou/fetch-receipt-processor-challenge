@@ -1,12 +1,12 @@
 import { Request, Response, NextFunction } from "express";
 import { validate } from "class-validator";
 import { plainToClass } from "class-transformer";
+import { Container } from "typedi";
 import { ReceiptResponseDTO } from "../dtos/receipt-response.dto";
-import { ReceiptPointsCalculator } from "../services/receipt-calculation.service";
+import { ReceiptPointsCalculator } from "../services/receipt.service";
 import { DataBaseService } from "../services/database.service";
 
-// TODO: get this DB Service into a DI container
-const dbService = new DataBaseService();
+const dbService = Container.get(DataBaseService);
 
 // TODO: Confirm if the DTO should actually be a parameter here
 export async function createReceiptRecord(

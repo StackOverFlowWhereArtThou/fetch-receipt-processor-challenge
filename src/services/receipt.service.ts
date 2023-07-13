@@ -1,3 +1,4 @@
+import { Service } from "typedi";
 import { ReceiptResponseDTO } from "../dtos/receipt-response.dto";
 import { PointCalculation } from "./helpers/receipt-point-calculation";
 // One point for every alphanumeric character in the retailer name.
@@ -8,7 +9,8 @@ import { PointCalculation } from "./helpers/receipt-point-calculation";
 // 6 points if the day in the purchase date is odd.
 // 10 points if the time of purchase is after 2:00pm and before 4:00pm.
 
-export class ReceiptPointsCalculator {
+@Service()
+export class ReceiptService {
   static calculatePoints(receipt: ReceiptResponseDTO): number {
     let points = 0;
 

@@ -1,4 +1,5 @@
 import crypto from "crypto";
+import { Service } from "typedi";
 
 type ReceiptID = string;
 
@@ -6,6 +7,7 @@ interface ReceiptRecord {
   points: number;
 }
 
+@Service()
 export class DataBaseService {
   records: Map<string, ReceiptRecord>;
 
