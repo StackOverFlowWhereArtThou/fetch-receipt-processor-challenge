@@ -1,4 +1,8 @@
-import { ReceiptItem } from "../../dtos/receipt-response.dto";
+import {
+  ReceiptItem,
+  ReceiptDateStringFormat,
+  ReceiptTimeStringFormat,
+} from "../../dtos/receipt-response.dto";
 
 export class PointCalculation {
   /**
@@ -46,7 +50,7 @@ export class PointCalculation {
    * 6 points if the day in the purchase date is odd.
    */
   static oddPurchaseDate(dateStr: string): number {
-    this.isValidDateFormat(dateStr);
+    if (!ReceiptDateStringFormat.test(dateStr)) throw Error("Bad Date String");
     const day = parseInt(dateStr.substring(dateStr.length - 2, dateStr.length));
     return day % 2 !== 0 ? 6 : 0;
   }
@@ -55,26 +59,8 @@ export class PointCalculation {
    * 10 points if the time of purchase is after 2:00pm and before 4:00pm.
    */
   static purchaseTime(timeStr: string) {
-    this.isValidTimeFormat(timeStr);
+    if (!ReceiptTimeStringFormat.test(timeStr)) throw Error("Bad Time String");
     const hour = parseInt(timeStr.substring(0, 2));
     return hour >= 14 && hour < 16 ? 10 : 0;
-  }
-
-  /**
-   * Throws error for datestrings not matching the regex expression
-   * @param dateStr
-   */
-  static isValidDateFormat(dateStr: string) {
-    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-    if (!dateRegex.test(dateStr)) throw Error("Bad Date String");
-  }
-
-  /**
-   * Throws error for datestrings not matching the regex expression
-   * @param timeStr
-   */
-  static isValidTimeFormat(timeStr: string) {
-    const timeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/;
-    if (!timeRegex.test(timeStr)) throw Error("Bad Time String");
   }
 }

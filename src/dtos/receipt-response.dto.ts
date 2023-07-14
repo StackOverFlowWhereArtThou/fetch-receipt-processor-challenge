@@ -16,6 +16,13 @@ const priceNumberOptions: IsNumberOptions = {
   maxDecimalPlaces: 2,
 };
 
+// This will match yyyy-mm-dd and also yyyy-m-d
+export const ReceiptDateStringFormat =
+  /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
+
+// This will mach HH:MM time
+export const ReceiptTimeStringFormat = /^([01]\d|2[0-3]):([0-5]\d)$/;
+
 export class ReceiptItem {
   @Expose()
   @IsString()
@@ -33,12 +40,11 @@ export class ReceiptResponseDTO {
   retailer!: string;
 
   @Expose()
-  // This will match yyyy-mm-dd and also yyyy-m-d
-  @Matches(/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/)
+  @Matches(ReceiptDateStringFormat)
   purchaseDate!: string;
 
   @Expose()
-  @IsMilitaryTime()
+  @Matches(ReceiptTimeStringFormat)
   purchaseTime!: string;
 
   @Expose()
