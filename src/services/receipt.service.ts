@@ -2,18 +2,14 @@ import crypto from "crypto";
 import { Service } from "typedi";
 
 import { ReceiptResponseDTO } from "../dtos/receipt-response.dto";
+import { ReceiptEntity } from "../entities/receipt.entity";
 import { PointCalculation } from "./helpers/receipt-point-calculation";
 
 type ReceiptID = string;
 
-// TODO: Create a Receipt Class entity
-interface ReceiptRecord {
-  points: number;
-}
-
 @Service()
 export class ReceiptService {
-  records: Map<string, ReceiptRecord>;
+  records: Map<string, ReceiptEntity>;
 
   constructor() {
     // NOTE: Per the API, this will suffice for storage in ou  API,
@@ -50,7 +46,8 @@ export class ReceiptService {
   create(receipt: ReceiptResponseDTO): ReceiptID {
     const id: string = crypto.randomUUID();
     const points = this.calculatePoints(receipt);
-    this.records.set(id, { points });
+    const record = new ReceiptEntity({ points });
+    this.records.set(id, record);
     return id;
   }
 
@@ -59,7 +56,7 @@ export class ReceiptService {
    * @param id ID to return from the records
    * @returns record if it exists, else undefined
    */
-  find(id: ReceiptID): ReceiptRecord | undefined {
+  find(id: ReceiptID): ReceiptEntity | undefined {
     return this.records.get(id);
   }
 }
