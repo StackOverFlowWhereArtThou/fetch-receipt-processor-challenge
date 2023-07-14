@@ -118,7 +118,9 @@ describe("PointCalculations", () => {
         expect(PointCalculation.oddPurchaseDate(date)).toBe(points);
       }
     );
-    xit("Should throw an error for erroneous datestrings", () => {});
+    it("Should throw an error for erroneous datestrings", () => {
+      expect(() => PointCalculation.oddPurchaseDate("123")).toThrowError();
+    });
   });
 
   describe("purchaseTime", () => {
@@ -138,9 +140,11 @@ describe("PointCalculations", () => {
         expect(PointCalculation.purchaseTime(timeStr)).toBe(points);
       }
     );
-    xit.each([
-      [10, "01:00"],
-      [0, "25:00"],
-    ])("Should throw an error for erroneous timestrings", () => {});
+    it.each(["01:83", "25:00"])(
+      "Should throw an error for erroneous timestrings",
+      (badTimeStr) => {
+        expect(() => PointCalculation.purchaseTime(badTimeStr)).toThrowError();
+      }
+    );
   });
 });
