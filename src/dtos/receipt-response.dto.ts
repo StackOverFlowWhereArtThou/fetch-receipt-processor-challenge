@@ -4,7 +4,6 @@ import {
   IsNumberOptions,
   IsArray,
   IsInstance,
-  IsMilitaryTime,
   Matches,
   ValidateNested,
 } from "class-validator";
