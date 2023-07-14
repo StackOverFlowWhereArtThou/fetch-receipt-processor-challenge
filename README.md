@@ -6,7 +6,7 @@ This API was built using Node JS with express and Typescript. API entries are va
 
 # Launching the Application
 
-The application is deployable via a docker container. You will need [Docker](https://docs.docker.com/) installed on your machine to launch this application
+The application is deployable via a docker container. You will need [Docker](https://docs.docker.com/) installed on your machine to launch this application.
 
 In order to build a docker image and run the corresponding container, run the following docker-compose command: `docker-compose -f docker-compose.yml up -d`. This will also trigger all unit tests to be run to prevent the edition of erroneous code.
 
