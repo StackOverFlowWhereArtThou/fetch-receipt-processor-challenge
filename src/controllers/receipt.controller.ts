@@ -12,19 +12,16 @@ export async function createReceiptRecord(
   res: Response,
   next: NextFunction
 ) {
-  // TODO: see why this did not transform value
+  // TODO: see why this did not transform all values
   const receiptDTO = plainToClass(ReceiptResponseDTO, req.body, {
     excludeExtraneousValues: true,
   });
-  // TODO: fix this up
   const validationErrors = await validate(receiptDTO);
   if (validationErrors.length) {
-    res.status(400).send("The receipt is invalid");
-    next();
-  } else {
-    const id = receiptService.create(receiptDTO);
-    res.json({ id });
+    return res.status(400).send("The receipt is invalid");
   }
+  const id = receiptService.create(receiptDTO);
+  return res.json({ id });
 }
 
 export function getReceiptRecord(req: Request, res: Response) {
