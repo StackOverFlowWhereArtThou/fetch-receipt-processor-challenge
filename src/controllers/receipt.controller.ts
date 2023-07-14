@@ -12,7 +12,6 @@ export async function createReceiptRecord(
   res: Response,
   next: NextFunction
 ) {
-  // TODO: see why this did not transform all values
   const receiptDTO = plainToClass(ReceiptResponseDTO, req.body, {
     excludeExtraneousValues: true,
   });

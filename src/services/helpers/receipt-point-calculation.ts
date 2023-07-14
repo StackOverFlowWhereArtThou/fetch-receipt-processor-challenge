@@ -60,13 +60,19 @@ export class PointCalculation {
     return hour >= 14 && hour < 16 ? 10 : 0;
   }
 
-  // TODO: move this to class validation and finish documenting it
-  static isValidDateFormat(dateString: string) {
+  /**
+   * Throws error for datestrings not matching the regex expression
+   * @param dateStr
+   */
+  static isValidDateFormat(dateStr: string) {
     const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-    if (!dateRegex.test(dateString)) throw Error("Bad Date String");
+    if (!dateRegex.test(dateStr)) throw Error("Bad Date String");
   }
 
-  // TODO: move this to class validation and finish documenting it
+  /**
+   * Throws error for datestrings not matching the regex expression
+   * @param timeStr
+   */
   static isValidTimeFormat(timeStr: string) {
     const timeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/;
     if (!timeRegex.test(timeStr)) throw Error("Bad Time String");
