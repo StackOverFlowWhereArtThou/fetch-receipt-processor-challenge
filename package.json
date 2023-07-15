@@ -4,7 +4,7 @@
   "description": "API for a receipt processor challenge for the Fetch takehome challenge",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_PATH=./build node build/index.js",
+    "start": "NODE_PATH=./build node build/src/index.js",
     "build": "tsc -p .",
     "dev": "nodemon src/index.ts",
     "test": "jest"
